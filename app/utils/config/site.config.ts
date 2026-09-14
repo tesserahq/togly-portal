@@ -4,7 +4,7 @@
  */
 export const SITE_CONFIG = {
   siteTitle: 'Togly',
-  siteDescription: 'A modern web portal for unified email-sending service',
+  siteDescription: 'A web portal for centralized feature-flag service',
   siteUrl: 'https://togly.mylinden.family',
   siteImage: '/images/logo.png',
   favicon: '/favicon.ico',

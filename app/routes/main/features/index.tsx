@@ -20,7 +20,7 @@ export async function loader({ request }: { request: Request }) {
   return { apiUrl, nodeEnv, pagination }
 }
 
-export default function EmailActivity() {
+export default function FeaturesListingPage() {
   const { apiUrl, nodeEnv, pagination } = useLoaderData<typeof loader>()
   const { token, isLoading } = useApp()
 

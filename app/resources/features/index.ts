@@ -1,11 +1,4 @@
-export type {
-  EGateType,
-  IAuditLogEntry,
-  IEnabledFeatures,
-  IFeature,
-  IFeatureCheck,
-  IGate,
-} from './feature.type'
+export type { EGateType, IAuditLogEntry, IFeature, IGate } from './feature.type'
 
 export {
   createFeature,

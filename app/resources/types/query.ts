@@ -18,3 +18,12 @@ export interface IQueryParams {
   size?: number
   q?: string
 }
+
+export class QueryError extends Error {
+  code?: string
+  constructor(message: string, code?: string) {
+    super(message)
+    this.name = 'QueryError'
+    this.code = code
+  }
+}

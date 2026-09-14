@@ -14,16 +14,7 @@ import {
 } from './feature.queries'
 import { IFeature, IGate } from './feature.type'
 import { TCreateFeatureInput } from './feature.schema'
-import { IQueryConfig, IQueryParams } from '../types'
-
-class QueryError extends Error {
-  code?: string
-  constructor(message: string, code?: string) {
-    super(message)
-    this.name = 'QueryError'
-    this.code = code
-  }
-}
+import { IQueryConfig, IQueryParams, QueryError } from '../types'
 
 export const featureQueryKeys = {
   all: ['features'] as const,
@@ -82,7 +73,7 @@ export function useCreateFeature(
   config: IQueryConfig,
   options?: {
     onSuccess?: (data: IFeature) => void
-    onError?: (error: Error) => void
+    onError?: (error: QueryError) => void
   }
 ) {
   const queryClient = useQueryClient()
@@ -102,7 +93,7 @@ export function useCreateFeature(
       toast.success('Feature created successfully!', { duration: 3000 })
       options?.onSuccess?.(data)
     },
-    onError: (error: Error) => {
+    onError: (error: QueryError) => {
       toast.error('Failed to create Feature', {
         description: error?.message || 'Please try again.',
       })
@@ -115,7 +106,7 @@ export function useDeleteFeature(
   config: IQueryConfig,
   options?: {
     onSuccess?: () => void
-    onError?: (error: Error) => void
+    onError?: (error: QueryError) => void
   }
 ) {
   const queryClient = useQueryClient()
@@ -136,7 +127,7 @@ export function useDeleteFeature(
       toast.success('Feature deleted successfully!', { duration: 3000 })
       options?.onSuccess?.()
     },
-    onError: (error: Error) => {
+    onError: (error: QueryError) => {
       toast.error('Failed to delete Feature', {
         description: error?.message || 'Please try again.',
       })
@@ -149,7 +140,7 @@ export function useEnableBooleanGate(
   config: IQueryConfig,
   options?: {
     onSuccess?: (data: IGate) => void
-    onError?: (error: Error) => void
+    onError?: (error: QueryError) => void
   }
 ) {
   const queryClient = useQueryClient()
@@ -170,7 +161,7 @@ export function useEnableBooleanGate(
       toast.success('Feature enabled!', { duration: 3000 })
       options?.onSuccess?.(data)
     },
-    onError: (error: Error) => {
+    onError: (error: QueryError) => {
       toast.error('Failed to enable boolean gate', {
         description: error?.message || 'Please try again.',
       })
@@ -183,7 +174,7 @@ export function useDisableBooleanGate(
   config: IQueryConfig,
   options?: {
     onSuccess?: () => void
-    onError?: (error: Error) => void
+    onError?: (error: QueryError) => void
   }
 ) {
   const queryClient = useQueryClient()
@@ -204,7 +195,7 @@ export function useDisableBooleanGate(
       toast.success('Feature disabled!', { duration: 3000 })
       options?.onSuccess?.()
     },
-    onError: (error: Error) => {
+    onError: (error: QueryError) => {
       toast.error('Failed to disable boolean gate', {
         description: error?.message || 'Please try again.',
       })
@@ -217,7 +208,7 @@ export function useEnableActorGate(
   config: IQueryConfig,
   options?: {
     onSuccess?: (data: IGate) => void
-    onError?: (error: Error) => void
+    onError?: (error: QueryError) => void
   }
 ) {
   const queryClient = useQueryClient()
@@ -238,7 +229,7 @@ export function useEnableActorGate(
       toast.success('Actor gate enabled!', { duration: 3000 })
       options?.onSuccess?.(data)
     },
-    onError: (error: Error) => {
+    onError: (error: QueryError) => {
       toast.error('Failed to enable actor gate', {
         description: error?.message || 'Please try again.',
       })
@@ -251,7 +242,7 @@ export function useDisableActorGate(
   config: IQueryConfig,
   options?: {
     onSuccess?: () => void
-    onError?: (error: Error) => void
+    onError?: (error: QueryError) => void
   }
 ) {
   const queryClient = useQueryClient()
@@ -272,7 +263,7 @@ export function useDisableActorGate(
       toast.success('Actor gate disabled!', { duration: 3000 })
       options?.onSuccess?.()
     },
-    onError: (error: Error) => {
+    onError: (error: QueryError) => {
       toast.error('Failed to disable actor gate', {
         description: error?.message || 'Please try again.',
       })

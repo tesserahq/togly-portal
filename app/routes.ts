@@ -14,6 +14,8 @@ export default [
     route('features/new', 'routes/main/features/new.tsx'),
 
     route('audit-logs', 'routes/main/audit-logs/index.tsx'),
+
+    route('features-check', 'routes/main/features-check/index.tsx'),
   ]),
 
   // Access Denied
