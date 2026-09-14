@@ -24,12 +24,3 @@ export interface IAuditLogEntry {
   snapshot: Record<string, unknown> | null
   created_at: string
 }
-
-export interface IFeatureCheck {
-  key: string
-  enabled: boolean
-}
-
-export interface IEnabledFeatures {
-  features: string[]
-}

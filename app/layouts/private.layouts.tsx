@@ -3,7 +3,7 @@ import { useApp } from '@/context/AppContext'
 import { useRequestInfo } from '@/hooks/useRequestInfo'
 import { ROUTE_PATH as THEME_PATH } from '@/routes/resources/update-theme'
 import { SITE_CONFIG } from '@/utils/config/site.config'
-import { ClipboardClock, Settings2 } from 'lucide-react'
+import { ClipboardClock, Settings2, SquareCheckBig } from 'lucide-react'
 import { Outlet, useLoaderData, useNavigate, useSubmit } from 'react-router'
 import { Layout, MainItemProps, TesseraProvider } from 'tessera-ui'
 
@@ -45,6 +45,11 @@ export default function PrivateLayout() {
       title: 'Logs',
       path: `/audit-logs`,
       icon: ClipboardClock,
+    },
+    {
+      title: 'Feature Test',
+      path: `/features-check`,
+      icon: SquareCheckBig,
     },
   ]
 
