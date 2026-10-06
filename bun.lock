@@ -41,7 +41,7 @@
         "cookie": "^1.0.2",
         "cronstrue": "^3.3.0",
         "cross-env": "^10.0.0",
-        "curl-generator": "^0.5.0",
+        "curl-generator": "^0.6.0",
         "date-fns": "^4.1.0",
         "date-fns-tz": "^3.2.0",
         "dotenv": "^17.2.3",
@@ -1067,7 +1067,7 @@
 
     "csstype": ["csstype@3.2.3", "", {}, "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="],
 
-    "curl-generator": ["curl-generator@0.5.0", "", { "dependencies": { "ms": "^2.0.0" } }, "sha512-dKmp63AJfNSplajvPoWIRfBOmp0IT8NETJ9sFw9IABEUTiJqtXdJx09mXxUlTgVCZDYWVxkCPds+mO9puf1J+w=="],
+    "curl-generator": ["curl-generator@0.6.1", "", { "dependencies": { "ms": "^2.0.0" } }, "sha512-5JNrNfzjuQQ2xsoTTKv7LKHDXCNe7ygiPtoVuvncaEbUgcNiNjVv47T6QhkBxkwRokwh7A5Y4CCuqrBNTOM56g=="],
 
     "damerau-levenshtein": ["damerau-levenshtein@1.0.8", "", {}, "sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA=="],
 
@@ -2021,7 +2021,7 @@
 
     "tapable": ["tapable@2.3.3", "", {}, "sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A=="],
 
-    "tessera-ui": ["tessera-ui@github:tesserahq/tessera-ui#9a5b0d9", { "dependencies": { "axios": "^1.10.0", "cmdk": "^1.1.1", "radix-ui": "^1.4.3" }, "peerDependencies": { "@auth0/auth0-react": "^2.0.0", "class-variance-authority": "^0.7.1", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0", "react-router": "^6.0.0 || ^7.0.0", "sonner": "^2.0.7", "tailwindcss": "^4.1.11" } }, "tesserahq-tessera-ui-9a5b0d9"],
+    "tessera-ui": ["tessera-ui@github:tesserahq/tessera-ui#9a5b0d9", { "dependencies": { "axios": "^1.10.0", "cmdk": "^1.1.1", "radix-ui": "^1.4.3" }, "peerDependencies": { "@auth0/auth0-react": "^2.0.0", "class-variance-authority": "^0.7.1", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0", "react-router": "^6.0.0 || ^7.0.0", "sonner": "^2.0.7", "tailwindcss": "^4.1.11" } }, "tesserahq-tessera-ui-9a5b0d9", "sha512-jczlpc0AI4GZXZMUMozZfTkvcNwDOEpLCA5et6byFz98hu343rNysW5mMXbyJUuTNHfBZ/6zlECi2SuSwAebZQ=="],
 
     "throttle-debounce": ["throttle-debounce@5.0.2", "", {}, "sha512-B71/4oyj61iNH0KeCamLuE2rmKuTO5byTOSVwECM5FA7TiAiAW+UqTKZ9ERueC4qvgSttUhdmq1mXC3kJqGX7A=="],
 
