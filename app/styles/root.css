@@ -1,5 +1,6 @@
 @config '../../tailwind.config.ts';
 @import 'tailwindcss';
+@import 'tessera-ui/theme.css';
 @source '../../node_modules/tessera-ui/src/**/*.{js,jsx,ts,tsx}';
 
 html,
@@ -28,102 +29,17 @@ body {
 
 @layer base {
   :root {
-    --background: 220, 20%, 97%;
-    --foreground: 220, 25%, 15%;
-
-    --card: 0, 0%, 100%;
-    --card-foreground: 220, 25%, 15%;
-
-    --popover: 0, 0%, 100%;
-    --popover-foreground: 220, 25%, 15%;
-
-    /* 🔵 TOGLY PRIMARY */
-    --primary: 219, 68%, 35%; /* #1D4498 */
-    --primary-foreground: 0, 0%, 100%;
-
-    /* Light blue */
-    --secondary: 220, 45%, 95%;
-    --secondary-foreground: 219, 68%, 30%;
-
-    --muted: 220, 20%, 94%;
-    --muted-foreground: 220, 12%, 45%;
-
-    --accent: 220, 60%, 91%;
-    --accent-foreground: 219, 68%, 30%;
-
-    --destructive: 0, 84%, 60%;
-    --destructive-foreground: 0, 0%, 100%;
-
-    --border: 220, 18%, 88%;
-    --input: 220, 18%, 88%;
-    --ring: 219, 68%, 35%;
-
-    /* Charts */
-    --chart-1: 219, 68%, 35%;
-    --chart-2: 219, 68%, 48%;
-    --chart-3: 219, 68%, 60%;
-    --chart-4: 219, 68%, 72%;
-    --chart-5: 219, 50%, 82%;
-
-    --radius: 0.75rem;
-
-    /* Sidebar */
-    --sidebar-background: 0, 0%, 100%;
-    --sidebar-foreground: 220, 20%, 12%;
-    --sidebar-primary: 219, 68%, 35%;
-    --sidebar-primary-foreground: 0, 0%, 100%;
-    --sidebar-accent: 220, 60%, 94%;
-    --sidebar-accent-foreground: 219, 68%, 30%;
-    --sidebar-border: 220, 18%, 88%;
-    --sidebar-ring: 219, 68%, 35%;
+    --primary: 219 68% 35%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 220 60% 91%;
+    --accent-foreground: 219 68% 30%;
   }
 
   .dark {
-    --background: 222, 25%, 10%;
-    --foreground: 220, 20%, 95%;
-
-    --card: 222, 22%, 15%;
-    --card-foreground: 220, 20%, 95%;
-
-    --popover: 222, 22%, 14%;
-    --popover-foreground: 220, 20%, 95%;
-
-    /* 🔵 TOGLY PRIMARY */
-    --primary: 219, 68%, 55%;
-    --primary-foreground: 0, 0%, 100%;
-
-    --secondary: 220, 25%, 20%;
-    --secondary-foreground: 220, 50%, 90%;
-
-    --muted: 220, 22%, 19%;
-    --muted-foreground: 220, 15%, 68%;
-
-    --accent: 219, 45%, 25%;
-    --accent-foreground: 220, 50%, 92%;
-
-    --destructive: 0, 62%, 50%;
-    --destructive-foreground: 0, 0%, 98%;
-
-    --border: 220, 18%, 27%;
-    --input: 220, 18%, 27%;
-    --ring: 219, 68%, 55%;
-
-    /* Charts */
-    --chart-1: 219, 68%, 55%;
-    --chart-2: 219, 68%, 65%;
-    --chart-3: 219, 68%, 45%;
-    --chart-4: 219, 68%, 75%;
-    --chart-5: 219, 50%, 82%;
-
-    /* Sidebar */
-    --sidebar-background: 222, 25%, 12%;
-    --sidebar-foreground: 220, 20%, 95%;
-    --sidebar-primary: 219, 68%, 55%;
-    --sidebar-primary-foreground: 0, 0%, 100%;
-    --sidebar-accent: 219, 35%, 22%;
-    --sidebar-accent-foreground: 220, 50%, 85%;
-    --sidebar-border: 220, 18%, 25%;
-    --sidebar-ring: 219, 68%, 55%;
+    --primary: 219 68% 55%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 219 45% 25%;
+    --accent-foreground: 220 50% 92%;
   }
 }
 
@@ -136,7 +52,7 @@ body {
   }
 
   body {
-    @apply font-sans text-sm leading-5 text-slate-800 antialiased
+    @apply font-sans text-sm leading-5 text-foreground antialiased
       [text-rendering:optimizeLegibility] dark:[color-scheme:dark];
   }
 
@@ -412,7 +328,7 @@ input[type='time']::-webkit-calendar-picker-indicator {
 .input-search {
   @apply border-input ring-offset-background file:text-foreground placeholder:text-muted-foreground
     hover:border-primary focus-visible:ring-primary dark:text-primary-foreground dark:bg-background
-    flex h-10 w-full rounded border bg-white px-3 py-2 text-base transition-all duration-100
+    flex h-10 w-full rounded border bg-background px-3 py-2 text-base transition-all duration-100
     file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:opacity-50
     focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none
     disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;

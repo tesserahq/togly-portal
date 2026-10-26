@@ -1,4 +1,3 @@
-import { Auth0Provider } from '@auth0/auth0-react'
 import type { LinksFunction, LoaderFunctionArgs } from 'react-router'
 import {
   data,
@@ -9,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useNavigate,
 } from 'react-router'
 import { AuthenticityTokenProvider } from 'remix-utils/csrf/react'
 
@@ -33,7 +33,7 @@ import { metaObject } from '@/utils/helpers/meta.helper'
 import { combineHeaders, getDomainUrl } from '@/utils/helpers/misc.helper'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { Toaster } from 'tessera-ui/components'
+import { Toaster, AuthProvider } from 'tessera-ui'
 
 library.add(fab)
 
@@ -140,7 +140,7 @@ function Document({
         {children}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
-        <Toaster position="top-right" theme={theme} />
+        <Toaster position="top-right" theme={theme} richColors />
       </body>
     </html>
   )
@@ -148,7 +148,6 @@ function Document({
 
 export default function AppWithProviders() {
   const {
-    toast,
     csrfToken,
     clientID,
     domain,
@@ -160,27 +159,36 @@ export default function AppWithProviders() {
   } = useLoaderData<typeof loader>()
 
   const nonce = useNonce()
+  const navigate = useNavigate()
   const theme = useTheme()
 
   return (
     <Document nonce={nonce} theme={theme}>
       <ProgressBar />
       <AuthenticityTokenProvider token={csrfToken}>
-        <Auth0Provider
-          domain={domain ?? ''}
-          clientId={clientID ?? ''}
-          authorizationParams={{
-            redirect_uri: hostUrl || 'http://localhost:3000',
-            organization: organizationID,
-            audience: audience,
-          }}>
-          {/* To check if the route is a public gazette share page */}
-          <AppProvider identiesApiUrl={identiesApiUrl!} nodeEnv={nodeEnv}>
-            <ReactQueryProvider>
-              <Outlet />
-            </ReactQueryProvider>
-          </AppProvider>
-        </Auth0Provider>
+        <AuthProvider
+          auth0={{
+            domain: domain ?? '',
+            clientId: clientID ?? '',
+            audience: audience ?? '',
+            organizationID: organizationID ?? '',
+            redirectUri: hostUrl || 'http://localhost:3000',
+            onRedirectCallback: () => {
+              navigate(hostUrl || 'http://localhost:3000')
+            },
+          }}
+          identiesApiUrl={identiesApiUrl ?? ''}
+          onUnauthenticated={() => {
+            navigate('/')
+          }}
+          requireAuth={false}>
+          {/* To check if the route is a public gazette share page
+          <AppProvider identiesApiUrl={identiesApiUrl!} nodeEnv={nodeEnv}> */}
+          <ReactQueryProvider>
+            <Outlet />
+          </ReactQueryProvider>
+          {/* </AppProvider> */}
+        </AuthProvider>
       </AuthenticityTokenProvider>
     </Document>
   )

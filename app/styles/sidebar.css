@@ -38,7 +38,7 @@
 .sidebar .sidebar-nav li a:active,
 .sidebar .sidebar-nav li a.active:hover,
 .sidebar .sidebar-nav li a:active:hover {
-  @apply bg-accent dark:bg-accent font-semibold text-black dark:text-white;
+  @apply bg-sidebar-accent text-sidebar-accent-foreground font-semibold;
 }
 
 .sidebar-switcher {
@@ -46,9 +46,9 @@
     tracking-wide text-slate-800 transition-all outline-none;
 }
 
-/* @apply bg-primary/10 dark:hover:bg-primary dark:hover:text-slate-800; */
+/* @apply bg-primary/10 dark:hover:bg-primary dark:hover:text-primary-foreground; */
 .sidebar-switcher:hover {
-  @apply bg-primary/10 dark:hover:bg-primary dark:hover:text-slate-800;
+  @apply bg-primary/10 dark:hover:bg-primary dark:hover:text-primary-foreground;
 }
 
 .sidebar-switcher:focus {
