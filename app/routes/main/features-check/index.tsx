@@ -1,6 +1,6 @@
 import { FeatureCheckContent } from '@/components/feature-check-page/content'
 import { AppPreloader } from '@/components/loader/pre-loader'
-import { useApp } from '@/context/AppContext'
+import { useApp } from 'tessera-ui'
 import { useLoaderData } from 'react-router'
 
 export async function loader() {
@@ -12,11 +12,11 @@ export async function loader() {
 
 export default function FeaturesCheckPage() {
   const { apiUrl, nodeEnv } = useLoaderData<typeof loader>()
-  const { token, isLoading } = useApp()
+  const { token, isLoadingIdenties } = useApp()
 
   const config = { apiUrl: apiUrl!, token: token ?? '', nodeEnv }
 
-  if (isLoading) {
+  if (isLoadingIdenties) {
     return <AppPreloader />
   }
 

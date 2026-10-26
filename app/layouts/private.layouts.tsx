@@ -1,11 +1,11 @@
 import { AppPreloader } from '@/components/loader/pre-loader'
-import { useApp } from '@/context/AppContext'
+import { useApp } from 'tessera-ui'
 import { useRequestInfo } from '@/hooks/useRequestInfo'
 import { ROUTE_PATH as THEME_PATH } from '@/routes/resources/update-theme'
 import { SITE_CONFIG } from '@/utils/config/site.config'
 import { ClipboardClock, Settings2, SquareCheckBig } from 'lucide-react'
-import { Outlet, useLoaderData, useNavigate, useSubmit } from 'react-router'
-import { Layout, MainItemProps, TesseraProvider } from 'tessera-ui'
+import { Outlet, useNavigate, useSubmit } from 'react-router'
+import { Layout, MainItemProps } from 'tessera-ui'
 
 export function loader() {
   const identiesApiUrl = process.env.IDENTIES_API_URL
@@ -16,9 +16,7 @@ export function loader() {
 }
 
 export default function PrivateLayout() {
-  const { identiesApiUrl } = useLoaderData<typeof loader>()
-
-  const { isLoading, token } = useApp()
+  const { isLoadingIdenties } = useApp()
   const requestInfo = useRequestInfo()
   const submit = useSubmit()
   const navigate = useNavigate()
@@ -53,23 +51,20 @@ export default function PrivateLayout() {
     },
   ]
 
-  if (isLoading) {
+  if (isLoadingIdenties) {
     return <AppPreloader className="min-h-screen" />
   }
 
   return (
-    <TesseraProvider identiesApiUrl={identiesApiUrl!} token={token || ''}>
-      <Layout.Main menuItems={menuItems} collapseSidebar={shouldCollapseSidebar}>
-        <Layout.Header
-          actionLogout={() => navigate('/logout')}
-          actionProfile={() => {}}
-          onSetTheme={(theme) => onSetTheme(theme)}
-          selectedTheme={requestInfo.userPrefs.theme || 'system'}
-          defaultLogo="/images/logo.png"
-          title={SITE_CONFIG.siteTitle}
-        />
-        <Outlet />
-      </Layout.Main>
-    </TesseraProvider>
+    <Layout.Main menuItems={menuItems} collapseSidebar={shouldCollapseSidebar}>
+      <Layout.Header
+        title={SITE_CONFIG.siteTitle}
+        actionLogout={() => navigate('/logout')}
+        actionProfile={() => {}}
+        onSetTheme={(theme) => onSetTheme(theme)}
+        selectedTheme={requestInfo.userPrefs.theme || 'system'}
+      />
+      <Outlet />
+    </Layout.Main>
   )
 }
