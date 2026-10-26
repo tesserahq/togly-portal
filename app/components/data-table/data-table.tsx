@@ -84,8 +84,7 @@ export function DataTable<TData, TValue>({
       <div className="flex-1 overflow-hidden">
         <div ref={scrollContainerRef} className="no-scrollbar h-full overflow-y-auto">
           <Table>
-            <TableHeader
-              className="bg-muted/70 sticky top-0 z-10 w-full backdrop-blur-md">
+            <TableHeader className="bg-muted/70 sticky top-0 z-10 w-full backdrop-blur-md">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id} className="border-border dark:hover:bg-navy-700">
                   {headerGroup.headers.map((header) => {
@@ -118,9 +117,7 @@ export function DataTable<TData, TValue>({
                     data-state={row.getIsSelected() && 'selected'}
                     className="hover:bg-muted/60">
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell
-                        key={cell.id}
-                        className="text-foreground py-2 ps-4">
+                      <TableCell key={cell.id} className="text-foreground py-2 ps-4">
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>
                     ))}

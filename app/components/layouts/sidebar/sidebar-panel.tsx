@@ -10,9 +10,7 @@ export function SidebarPanel({ menuItems }: ISidebarPanelProps) {
   }
 
   return (
-    <div
-      className="sidebar-panel bg-sidebar-background flex h-full grow flex-col
-        justify-between">
+    <div className="sidebar-panel bg-sidebar-background flex h-full grow flex-col justify-between">
       <div className="flex w-full flex-col">
         {/* Sidebar Panel Body */}
         <div className="sidebar-body">
