@@ -34,11 +34,13 @@ export function AppProvider({ children, identiesApiUrl, nodeEnv }: IProviderProp
 
   const fetchToken = async () => {
     try {
-      const token = await getAccessTokenSilently()
-      const user = await fetchApi(`${identiesApiUrl}/me`, token, nodeEnv)
+      const accessToken = await getAccessTokenSilently()
+      if (!accessToken) throw new Error('Auth0 returned no access token')
+
+      const user = await fetchApi(`${identiesApiUrl}/me`, accessToken, nodeEnv)
 
       setUser(user)
-      setToken(token)
+      setToken(accessToken)
     } catch (error: any) {
       handleApiError!(error)
     } finally {
