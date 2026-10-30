@@ -112,7 +112,7 @@
     "@typescript-eslint/parser": "8.72.1",
     "@vitest/ui": "5.0.5",
     "crypto-js": "^4.2.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^4.0.0",
     "eslint-plugin-import": "^2.30.0",
