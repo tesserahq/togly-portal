@@ -1,4 +1,4 @@
-import { ColumnDef } from '@tanstack/react-table'
+import type { LegacyColumnDef as ColumnDef } from '@tanstack/react-table/legacy'
 import { Button } from '@/modules/shadcn/ui/button'
 import { X } from 'lucide-react'
 import { IGate } from '@/resources/features'

@@ -25,7 +25,7 @@ import { Input } from '@/modules/shadcn/ui/input'
 import { Button } from '@/modules/shadcn/ui/button'
 import { Badge } from '@/modules/shadcn/ui/badge'
 import { DataTable } from '../data-table'
-import { ColumnDef } from '@tanstack/react-table'
+import type { LegacyColumnDef as ColumnDef } from '@tanstack/react-table/legacy'
 
 interface FeatureCheckContentProps {
   config: IQueryConfig
