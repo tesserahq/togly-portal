@@ -10,6 +10,8 @@ import {
   useLoaderData,
   useNavigate,
 } from 'react-router'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AuthenticityTokenProvider } from 'remix-utils/csrf/react'
 
 // Import global CSS styles for the application
@@ -29,6 +31,7 @@ import { getTheme, Theme, useTheme } from '@/hooks/useTheme'
 import { ReactQueryProvider } from '@/modules/react-query'
 import { csrf } from '@/utils/cookies/csrf.server'
 import { getToastSession } from '@/utils/cookies/toast.server'
+import { getLocale, i18nextMiddleware } from '@/modules/i18n/i18n.server'
 import { metaObject } from '@/utils/helpers/meta.helper'
 import { combineHeaders, getDomainUrl } from '@/utils/helpers/misc.helper'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -37,7 +40,9 @@ import { Toaster, AuthProvider } from 'tessera-ui'
 
 library.add(fab)
 
-export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
+export const middleware = [i18nextMiddleware]
+
+export const meta: MetaFunction<typeof loader> = ({ loaderData, location }) => {
   // Get the current page title from the pathname
   const getPageTitle = () => {
     const path = location.pathname
@@ -53,7 +58,7 @@ export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
 
   const pageTitle = getPageTitle()
 
-  return metaObject(data ? pageTitle : 'Error')
+  return metaObject(loaderData ? pageTitle : 'Error')
 }
 
 export const links: LinksFunction = () => {
@@ -66,8 +71,9 @@ export const links: LinksFunction = () => {
 
 export type LoaderData = Exclude<Awaited<ReturnType<typeof loader>>, Response>
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request, context }: LoaderFunctionArgs) {
   const user = null
+  const locale = getLocale(context)
 
   const { toast, headers: toastHeaders } = await getToastSession(request)
   const [csrfToken, csrfCookieHeader] = await csrf.commitToken()
@@ -84,6 +90,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       hostUrl,
       identiesApiUrl,
       nodeEnv,
+      locale,
       user,
       toast,
       csrfToken,
@@ -110,17 +117,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
 function Document({
   children,
   nonce,
+  lang = 'en',
   dir = 'ltr',
   theme = 'light',
 }: {
   children: React.ReactNode
   nonce: string
+  lang?: string
   dir?: 'ltr' | 'rtl'
   theme?: Theme
 }) {
   return (
     <html
-      lang="en"
+      lang={lang}
       dir={dir}
       className={`${theme} overflow-x-hidden`}
       style={{ colorScheme: theme }}>
@@ -156,14 +165,20 @@ export default function AppWithProviders() {
     organizationID,
     identiesApiUrl,
     nodeEnv,
+    locale,
   } = useLoaderData<typeof loader>()
 
   const nonce = useNonce()
   const navigate = useNavigate()
   const theme = useTheme()
+  const { i18n } = useTranslation()
+
+  useEffect(() => {
+    if (i18n.language !== locale) void i18n.changeLanguage(locale)
+  }, [i18n, locale])
 
   return (
-    <Document nonce={nonce} theme={theme}>
+    <Document nonce={nonce} theme={theme} lang={locale}>
       <ProgressBar />
       <AuthenticityTokenProvider token={csrfToken}>
         <AuthProvider
