@@ -1,6 +1,8 @@
 'use client'
 
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import { flexRender } from '@tanstack/react-table'
+import type { RowData } from '@tanstack/react-table'
+import { getCoreRowModel, useLegacyTable } from '@tanstack/react-table/legacy'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@shadcn/ui/table'
 import { cn } from '@shadcn/lib/utils'
@@ -9,7 +11,7 @@ import { Pagination } from 'tessera-ui/components'
 import { TableCellSkeletons } from './data-table-skeleton'
 import { DataTableProps } from './types'
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends RowData, TValue>({
   columns,
   data,
   meta,
@@ -54,7 +56,7 @@ export function DataTable<TData, TValue>({
     }
   }, [])
 
-  const internalTable = useReactTable({
+  const internalTable = useLegacyTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
